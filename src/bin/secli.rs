@@ -16,6 +16,7 @@ fn example() {
             ty_atom.clone(),
             ty_atom
         );
+    // \x. x
     let term: Box<syntax::CTerm> =
         box syntax::Lam(
             box syntax::Inf(
