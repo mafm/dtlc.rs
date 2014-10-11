@@ -8,8 +8,8 @@ authors = [ "Darin Morrison <darinmorrison+rust@gmail.com>" ]
 debug = false
 
 [lib]
-name = "secore"
-path = "src/secore/lib.rs"
+name = "selib"
+path = "src/selib/lib.rs"
 
 [[bin]]
 name = "secli"
