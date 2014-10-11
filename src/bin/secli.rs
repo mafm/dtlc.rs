@@ -20,9 +20,7 @@ fn example() {
     let term: Box<syntax::CTerm> =
         box syntax::Lam(
             box syntax::Inf(
-                box syntax::Var(
-                    0
-                )
+                box syntax::Var(0)
             )
         );
     println!("printing \"A -> A\" :\n\t{}", ty_fun);
