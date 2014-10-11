@@ -2,7 +2,7 @@ extern crate selib;
 
 use selib::core::syntax;
 
-fn example() {
+fn example_print() {
     // A
     let ty_atom: Box<syntax::Type> =
         box syntax::TPar(
@@ -28,5 +28,5 @@ fn example() {
 }
 
 fn main() {
-    example();
+    example_print();
 }
