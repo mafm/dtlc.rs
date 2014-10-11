@@ -1,6 +1,15 @@
 extern crate selib;
 
+use selib::parse;
 use selib::core::syntax;
+
+fn example_parse() {
+    println!("parsing :\n\t\"42\"", )
+    let name: Box<syntax::Name> = box syntax::Bound(42);
+    let pres: Result<Box<syntax::Name>,String> = parse::name("42");
+    assert_eq!(pres, Ok(name));
+    println!("parsed  :\n\t{}", pres);
+}
 
 fn example_print() {
     // A
@@ -28,5 +37,7 @@ fn example_print() {
 }
 
 fn main() {
+    example_parse();
+    println!("\n---\n");
     example_print();
 }
