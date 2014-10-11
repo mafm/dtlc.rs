@@ -1,0 +1,32 @@
+[package]
+
+name    = "rust-simply-easy"
+version = "0.0.1"
+authors = [ "Darin Morrison <darinmorrison+rust@gmail.com>" ]
+
+[profile.dev]
+debug = false
+
+[lib]
+name = "secore"
+path = "src/secore/lib.rs"
+
+[[bin]]
+name = "secli"
+doc  = false
+test = false
+
+[dependencies.docopt]
+git = "https://github.com/docopt/docopt.rs"
+
+[dependencies.docopt_macros]
+git = "https://github.com/docopt/docopt.rs"
+
+[dependencies.peg]
+git = "https://github.com/kevinmehall/rust-peg"
+
+[dependencies.quickcheck]
+git = "https://github.com/BurntSushi/quickcheck"
+
+[dependencies.quickcheck_macros]
+git = "https://github.com/BurntSushi/quickcheck"
