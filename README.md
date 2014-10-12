@@ -8,7 +8,7 @@ Rust implementation of a simple dependently typed language.
 
 The interpreter is based on ideas from the following sources:
 
-- Löh, McBride, Swierstra / [Simply Easy!](http://strictlypositive.org/Easy.pdf)
+- Löh, McBride, Swierstra / [Simply Easy!](http://strictlypositive.org/Easy.pdf) ([revised version](http://www.andres-loeh.de/LambdaPi/LambdaPi.pdf))
 - Augustsson / [Simpler, Easier!](http://augustss.blogspot.com/2007/10/simpler-easier-in-recent-paper-simply.html)
 
 ## Requirements
