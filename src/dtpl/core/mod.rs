@@ -1,3 +1,6 @@
+pub use self::eval::{
+};
+
 pub use self::model::{
 };
 
@@ -8,5 +11,6 @@ pub use self::syntax::{
     Type,
 };
 
+pub mod eval;
 pub mod model;
 pub mod syntax;
