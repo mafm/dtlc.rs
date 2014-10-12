@@ -1,4 +1,4 @@
-#![crate_name="selib"]
+#![crate_name="dtpl"]
 #![crate_type="rlib"]
 
 #![feature(phase)]

@@ -1,4 +1,4 @@
-# rust-simply-easy
+# rust-simple-dtpl
 
 Rust implementation of a simple dependently typed language.
 

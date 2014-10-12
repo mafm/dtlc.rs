@@ -1,6 +1,6 @@
 [package]
 
-name    = "rust-simply-easy"
+name    = "rust-simple-dtpl"
 version = "0.0.1"
 authors = [ "Darin Morrison <darinmorrison+rust@gmail.com>" ]
 
@@ -8,11 +8,11 @@ authors = [ "Darin Morrison <darinmorrison+rust@gmail.com>" ]
 debug = false
 
 [lib]
-name = "selib"
-path = "src/selib/lib.rs"
+name = "dtpl"
+path = "src/dtpl/lib.rs"
 
 [[bin]]
-name = "secli"
+name = "dtpl"
 doc  = false
 test = false
 

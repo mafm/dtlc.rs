@@ -1,7 +1,7 @@
-extern crate selib;
+extern crate dtpl;
 
-use selib::parse;
-use selib::core::syntax;
+use dtpl::parse;
+use dtpl::core::syntax;
 
 fn example_parse() {
     println!("parsing :\n\t\"42\"", )
