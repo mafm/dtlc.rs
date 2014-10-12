@@ -1,7 +1,7 @@
 extern crate dtpl;
 
 mod example {
-    use dtpl::core::eval;
+    use dtpl::core::normal;
     use dtpl::core::domain::{
         nrm,
     };
@@ -13,8 +13,8 @@ mod example {
     };
     use dtpl::parse;
 
-    pub fn eval() {
-        println!("evaluating:\n\t\"((\\x. x) : A -> A) welp\"");
+    pub fn normal() {
+        println!("normaluating:\n\t\"((\\x. x) : A -> A) welp\"");
         let term_orig: chk::Chk =
             chk::Inf(
                 box inf::App(
@@ -34,8 +34,8 @@ mod example {
                     ),
                 )
             );
-            let term_eval: nrm::Nrm = eval::chk(term_orig, vec![]);
-            println!("result:\n\t{}", term_eval);
+            let term_normal: nrm::Nrm = normal::chk(term_orig, vec![]);
+            println!("result:\n\t{}", term_normal);
         }
 
     pub fn parse() {
@@ -56,7 +56,7 @@ mod example {
 }
 
 fn main() {
-    example::eval();
+    example::normal();
     println!("\n---\n");
     example::parse();
     println!("\n---\n");

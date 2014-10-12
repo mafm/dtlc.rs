@@ -10,13 +10,13 @@ pub mod neu {
 }
 
 pub mod nrm {
-    use core::eval;
+    use core::normal;
     use core::domain::neu;
     use core::syntax::chk;
     #[deriving(Clone)]
     #[deriving(Show)]
     pub enum Nrm {
-        Abs(Box<chk::Chk>, eval::Env),
+        Abs(Box<chk::Chk>, normal::Env),
         Neu(Box<neu::Neu>),
     }
 }
