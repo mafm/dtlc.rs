@@ -10,7 +10,7 @@ use core::syntax::{
 
 pub type Env = Vec<nrm::Nrm>;
 
-fn vpar(n:sym::Sym,) -> nrm::Nrm {
+fn vpar(n:sym::Sym) -> nrm::Nrm {
     nrm::Neu(box neu::Par(n))
 }
 
