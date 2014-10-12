@@ -19,7 +19,7 @@ pub enum Value {
 #[deriving(Show)]
 pub struct Closure {
     chk: Box<syntax::CTerm>,
-    env: Vec<Box<Value>>,
+    env: eval::Env,
 }
 
 // FIXME:
@@ -34,7 +34,7 @@ pub struct Closure {
 //   Also might be able to do something clever with associated types and
 //   multidispatch to get a nicer encoding.
 impl Closure {
-    pub fn new(c:Box<syntax::CTerm>, e:Vec<Box<Value>>) -> Closure {
+    pub fn new(c:Box<syntax::CTerm>, e:eval::Env) -> Closure {
         // println!("new")
         Closure {
             chk: c,
