@@ -43,7 +43,7 @@ pub enum CTerm {
 #[deriving(PartialOrd)]
 #[deriving(Show)]
 pub enum ITerm {
-    Ann(Box<CTerm>, Type),
+    Ann(Box<CTerm>, Box<Type>),
     App(Box<ITerm>, Box<CTerm>),
     Var(uint),
     Par(Box<Name>),
