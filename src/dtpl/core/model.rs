@@ -11,7 +11,6 @@ pub enum Neutral {
 #[deriving(Clone)]
 #[deriving(Show)]
 pub enum Value {
-    // FIXME: will probably need a struct/object for VLam
     VLam(Box<FunLike>),
     VNeutral(Box<Neutral>),
 }
