@@ -1,21 +1,32 @@
 use core::domain::{
-    neu,
     nrm,
 };
 use core::syntax::{
     chk,
     inf,
-    sym,
 };
 
-fn vpar(n:sym::Sym) -> nrm::Nrm {
-    nrm::Neu(box neu::Par(n))
-}
+mod dom {
+    use core::domain::{
+        neu,
+        nrm,
+    };
+    use core::syntax::{
+        sym,
+    };
+    use core::normal::{
+        chk,
+    };
 
-fn vapp(v1:nrm::Nrm, v2:nrm::Nrm) -> nrm::Nrm {
-    match v1 {
-        nrm::Abs(box v1c, mut v1e) => { v1e.push(v2); chk(v1c, v1e) },
-        nrm::Neu(v1n) => { nrm::Neu(box neu::App(v1n, box v2)) },
+    pub fn par(n:sym::Sym) -> nrm::Nrm {
+        nrm::Neu(box neu::Par(n))
+    }
+
+    pub fn app(v1:nrm::Nrm, v2:nrm::Nrm) -> nrm::Nrm {
+        match v1 {
+            nrm::Abs(box v1c, mut v1e) => { v1e.push(v2); chk(v1c, v1e) },
+            nrm::Neu(v1n) => { nrm::Neu(box neu::App(v1n, box v2)) },
+        }
     }
 }
 
@@ -29,8 +40,8 @@ pub fn chk(c:chk::Chk, e:nrm::Env) -> nrm::Nrm {
 fn inf(i:inf::Inf, e:nrm::Env) -> nrm::Nrm {
     match i {
         inf::Ann(box ic, _) => { chk(ic, e) },
-        inf::App(box ii, box ic) => { vapp(inf(ii, e.clone()), chk(ic, e)) },
-        inf::Par(ix) => { vpar(ix) },
+        inf::App(box ii, box ic) => { dom::app(inf(ii, e.clone()), chk(ic, e)) },
+        inf::Par(ix) => { dom::par(ix) },
         inf::Var(iu) => { e[iu].clone() },
     }
 }
