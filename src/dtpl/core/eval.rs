@@ -12,7 +12,7 @@ fn vpar(n:Box<syntax::Name>,) -> Box<model::Value> {
 
 fn vapp(v1:Box<model::Value>, v2:Box<model::Value>) -> Box<model::Value> {
     match v1 {
-        box model::VLam(mut v1f) => {
+        box model::VLam(v1f) => {
             // println!("vapp, vlam, v1f=<{}>, v2=<{}>", v1f.clone(), v2.clone());
             v1f.apply(v2)
         },

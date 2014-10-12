@@ -41,9 +41,10 @@ impl Closure {
             env: e,
         }
     }
-    pub fn apply(&mut self, v:Box<Value>) -> Box<Value> {
+    pub fn apply(&self, v:Box<Value>) -> Box<Value> {
         // println!("applying")
-        self.env.push(v);
-        eval::chk(self.chk.clone(), self.env.clone())
+        let mut e = self.env.clone();
+        e.push(v);
+        eval::chk(self.chk.clone(), e)
     }
 }
