@@ -8,8 +8,6 @@ use core::syntax::{
     sym,
 };
 
-pub type Env = Vec<nrm::Nrm>;
-
 fn vpar(n:sym::Sym) -> nrm::Nrm {
     nrm::Neu(box neu::Par(n))
 }
@@ -21,14 +19,14 @@ fn vapp(v1:nrm::Nrm, v2:nrm::Nrm) -> nrm::Nrm {
     }
 }
 
-pub fn chk(c:chk::Chk, e:Env) -> nrm::Nrm {
+pub fn chk(c:chk::Chk, e:nrm::Env) -> nrm::Nrm {
     match c {
         chk::Inf(box ci) => { inf(ci, e) },
         chk::Abs(cc) => { nrm::Abs(cc, e) },
     }
 }
 
-fn inf(i:inf::Inf, e:Env) -> nrm::Nrm {
+fn inf(i:inf::Inf, e:nrm::Env) -> nrm::Nrm {
     match i {
         inf::Ann(box ic, _) => { chk(ic, e) },
         inf::App(box ii, box ic) => { vapp(inf(ii, e.clone()), chk(ic, e)) },
