@@ -18,8 +18,8 @@ pub enum Value {
 #[deriving(Clone)]
 #[deriving(Show)]
 pub struct FunLike {
-    pub chk: Box<syntax::CTerm>,
-    pub env: Vec<Box<Value>>,
+    chk: Box<syntax::CTerm>,
+    env: Vec<Box<Value>>,
 }
 
 impl FunLike {
