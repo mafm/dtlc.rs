@@ -1,3 +1,6 @@
+pub use self::model::{
+};
+
 pub use self::syntax::{
     Name,
     CTerm,
@@ -5,4 +8,5 @@ pub use self::syntax::{
     Type,
 };
 
+pub mod model;
 pub mod syntax;
