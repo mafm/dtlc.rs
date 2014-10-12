@@ -1,6 +1,15 @@
 # rust-simply-easy
 
-Simply Easy! in Rust
+Rust implementation of a simple dependently typed language.
+
+## Synopsis
+
+### Design
+
+The interpreter is based on ideas from the following sources:
+
+- Löh, McBride, Swierstra / [Simply Easy!](http://strictlypositive.org/Easy.pdf)
+- Augustsson / [Simpler, Easier!](http://augustss.blogspot.com/2007/10/simpler-easier-in-recent-paper-simply.html)
 
 ## Requirements
 
