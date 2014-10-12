@@ -14,7 +14,7 @@ mod example {
     use dtpl::parse;
 
     pub fn normal() {
-        println!("normaluating:\n\t\"((\\x. x) : A -> A) welp\"");
+        println!("normalizing:\n\t\"((\\x. x) : A -> A) welp\"");
         let term_orig: chk::Chk =
             chk::Inf(
                 box inf::App(
