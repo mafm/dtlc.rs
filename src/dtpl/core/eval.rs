@@ -25,14 +25,14 @@ fn vapp(v1:Box<model::Value>, v2:Box<model::Value>) -> Box<model::Value> {
     }
 }
 
-pub fn ceval(c:Box<syntax::CTerm>, e:Env) -> Box<model::Value> {
+pub fn chk(c:Box<syntax::CTerm>, e:Env) -> Box<model::Value> {
     match c {
         box syntax::Inf(ci) => {
-            // println!("ceval, inf, e=<{}>, ci=<{}>", e, ci.clone());
-            ieval(ci, e)
+            // println!("chk, inf, e=<{}>, ci=<{}>", e, ci.clone());
+            inf(ci, e)
         },
         box syntax::Lam(cc) => {
-            // println!("ceval, lam, e=<{}>, cc=<{}>", e, cc.clone());
+            // println!("chk, lam, e=<{}>, cc=<{}>", e, cc.clone());
             box model::VLam(
                 box model::FunLike::new(cc, e)
             )
@@ -40,22 +40,22 @@ pub fn ceval(c:Box<syntax::CTerm>, e:Env) -> Box<model::Value> {
     }
 }
 
-fn ieval(i:Box<syntax::ITerm>, e:Env) -> Box<model::Value> {
+fn inf(i:Box<syntax::ITerm>, e:Env) -> Box<model::Value> {
     match i {
         box syntax::Ann(ref ic, ref t) => {
-            // println!("ieval, ann, e=<{}>, ic=<{}>, t=<{}>", e, ic.clone(), t.clone());
-            ceval(ic.clone(), e)
+            // println!("inf, ann, e=<{}>, ic=<{}>, t=<{}>", e, ic.clone(), t.clone());
+            chk(ic.clone(), e)
         },
         box syntax::App(ref ii, ref ic) => {
-            // println!("ieval, app, e=<{}>, ii=<{}>, ic=<{}>", e, ii.clone(), ic.clone());
-            vapp(ieval(ii.clone(), e.clone()), ceval(ic.clone(), e))
+            // println!("inf, app, e=<{}>, ii=<{}>, ic=<{}>", e, ii.clone(), ic.clone());
+            vapp(inf(ii.clone(), e.clone()), chk(ic.clone(), e))
         },
         box syntax::Par(ix) => {
-            // println!("ieval, par, e=<{}>, ix=<{}>", e, ix.clone());
+            // println!("inf, par, e=<{}>, ix=<{}>", e, ix.clone());
             vpar(ix)
         },
         box syntax::Var(iu) => {
-            // println!("ieval, var, e=<{}>, iu=<{}>", e, iu.clone());
+            // println!("inf, var, e=<{}>, iu=<{}>", e, iu.clone());
             e[iu].clone()
         },
     }

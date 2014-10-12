@@ -34,6 +34,6 @@ impl FunLike {
     pub fn apply(&mut self, v:Box<Value>) -> Box<Value> {
         // println!("applying")
         self.env.push(v);
-        eval::ceval(self.chk.clone(), self.env.clone())
+        eval::chk(self.chk.clone(), self.env.clone())
     }
 }

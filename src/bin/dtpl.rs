@@ -32,7 +32,7 @@ fn example_eval() {
                 ),
             )
         );
-    let term_eval: Box<model::Value> = eval::ceval(term_orig, Vec::new());
+    let term_eval: Box<model::Value> = eval::chk(term_orig, Vec::new());
     println!("result:\n\t{}", term_eval);
 }
 
