@@ -37,11 +37,11 @@ fn example_eval() {
 }
 
 fn example_parse() {
-    println!("parsing :\n\t\"42\"")
+    println!("parsing:\n\t\"42\"")
     let name: Box<syntax::Name> = box syntax::Bound(42);
     let pres: Result<Box<syntax::Name>,String> = parse::name("42");
     assert_eq!(pres, Ok(name));
-    println!("parsed  :\n\t{}", pres);
+    println!("parsed:\n\t{}", pres);
 }
 
 fn example_print() {
@@ -65,8 +65,8 @@ fn example_print() {
                 box syntax::Var(0)
             )
         );
-    println!("printing \"A -> A\" :\n\t{}", ty_fun);
-    println!("printing \"\\x. x\"  :\n\t{}", term);
+    println!("printing:\n\t\"A -> A\":\n\t\t{}", ty_fun);
+    println!("printing:\n\t\"\\x. x\":\n\t\t{}", term);
 }
 
 fn main() {
