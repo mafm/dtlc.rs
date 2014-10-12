@@ -1,18 +1,16 @@
 #[phase(plugin)]
 extern crate peg_syntax_ext;
 
-pub use self::peg::name;
+pub use self::peg::sym;
 
 peg! peg(r#"
 use core::syntax;
 
 #[pub]
-name
-  -> Box<syntax::Name>
+sym
+  -> Box<syntax::sym::Sym>
     = [0-9]+
         {
-            box syntax::Const(
-                String::from_str(match_str)
-            )
+            box syntax::sym::Con(String::from_str(match_str))
         }
 "#)

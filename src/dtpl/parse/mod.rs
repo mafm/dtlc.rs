@@ -1,5 +1,5 @@
 pub use self::parse::{
-    name,
+    sym,
 };
 
 pub mod parse;

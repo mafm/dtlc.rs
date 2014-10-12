@@ -1,80 +1,56 @@
 extern crate dtpl;
 
-use dtpl::core::syntax;
-use dtpl::core::model;
 use dtpl::core::eval;
+use dtpl::core::model::{
+    nrm,
+};
+use dtpl::core::syntax::{
+    chk,
+    inf,
+    sym,
+    typ,
+};
 use dtpl::parse;
 
 fn example_eval() {
     println!("evaluating:\n\t\"((\\x. x) : A -> A) welp\"");
-    let term_orig: syntax::CTerm =
-        syntax::Inf(
-            box syntax::App(
-                box syntax::Ann(
-                    box syntax::Lam(
-                        box syntax::Inf(
-                            box syntax::Var(0)
+    let term_orig: chk::Chk =
+        chk::Inf(
+            box inf::App(
+                box inf::Ann(
+                    box chk::Abs(
+                        box chk::Inf(
+                            box inf::Var(0)
                         )
                     ),
-                    box syntax::Fun(
-                        box syntax::TPar(
-                            syntax::Const(
-                                String::from_str("A")
-                            )
-                        ),
-                        box syntax::TPar(
-                            syntax::Const(
-                                String::from_str("A")
-                            )
-                        ),
+                    box typ::Fun(
+                        box typ::Par(sym::Con(String::from_str("A"))),
+                        box typ::Par(sym::Con(String::from_str("A"))),
                     ),
                 ),
-                box syntax::Inf(
-                    box syntax::Par(
-                        syntax::Const(
-                            String::from_str("welp")
-                        )
-                    )
+                box chk::Inf(
+                    box inf::Par(sym::Con(String::from_str("welp")))
                 ),
             )
         );
-    let term_eval: model::Value = eval::chk(term_orig, Vec::new());
+    let term_eval: nrm::Nrm = eval::chk(term_orig, Vec::new());
     println!("result:\n\t{}", term_eval);
 }
 
 fn example_parse() {
     println!("parsing:\n\t\"42\"")
-    let name: Box<syntax::Name> = box syntax::Const(
-        String::from_str("42")
-    );
-    let pres: Result<Box<syntax::Name>,String> = parse::name("42");
-    assert_eq!(pres, Ok(name));
-    println!("parsed:\n\t{}", pres);
+    let sym: Box<sym::Sym> = box sym::Con(String::from_str("42"));
+    let res: Result<Box<sym::Sym>,String> = parse::sym("42");
+    assert_eq!(res, Ok(sym));
+    println!("parsed:\n\t{}", res);
 }
 
 fn example_print() {
-    // A
-    let ty_atom: Box<syntax::Type> =
-        box syntax::TPar(
-            syntax::Const(
-                String::from_str("A")
-            )
-        );
-    // A -> A
-    let ty_fun: Box<syntax::Type> =
-        box syntax::Fun(
-            ty_atom.clone(),
-            ty_atom
-        );
-    // \x. x
-    let term: Box<syntax::CTerm> =
-        box syntax::Lam(
-            box syntax::Inf(
-                box syntax::Var(0)
-            )
-        );
+    let ty_par: Box<typ::Typ> = box typ::Par(sym::Con(String::from_str("A")));
+    let ty_fun: Box<typ::Typ> = box typ::Fun(ty_par.clone(), ty_par);
+    let tm_chk: Box<chk::Chk> = box chk::Abs(box chk::Inf(box inf::Var(0)));
     println!("printing:\n\t\"A -> A\":\n\t\t{}", ty_fun);
-    println!("printing:\n\t\"\\x. x\":\n\t\t{}", term);
+    println!("printing:\n\t\"\\x. x\":\n\t\t{}", tm_chk);
 }
 
 fn main() {

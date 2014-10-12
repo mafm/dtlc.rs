@@ -1,16 +1,22 @@
-use core::eval;
-use core::syntax;
-
-#[deriving(Clone)]
-#[deriving(Show)]
-pub enum Neutral {
-    NPar(syntax::Name),
-    NApp(Box<Neutral>, Box<Value>),
+pub mod neu {
+    use core::model::nrm;
+    use core::syntax::sym;
+    #[deriving(Clone)]
+    #[deriving(Show)]
+    pub enum Neu {
+        Par(sym::Sym),
+        App(Box<Neu>, Box<nrm::Nrm>),
+    }
 }
 
-#[deriving(Clone)]
-#[deriving(Show)]
-pub enum Value {
-    VLam(Box<syntax::CTerm>, eval::Env),
-    VNeutral(Box<Neutral>),
+pub mod nrm {
+    use core::eval;
+    use core::model::neu;
+    use core::syntax::chk;
+    #[deriving(Clone)]
+    #[deriving(Show)]
+    pub enum Nrm {
+        Abs(Box<chk::Chk>, eval::Env),
+        Neu(Box<neu::Neu>),
+    }
 }

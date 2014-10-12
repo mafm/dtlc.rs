@@ -2,13 +2,15 @@ pub use self::eval::{
 };
 
 pub use self::model::{
+    neu,
+    nrm,
 };
 
 pub use self::syntax::{
-    Name,
-    CTerm,
-    ITerm,
-    Type,
+    sym,
+    chk,
+    inf,
+    typ,
 };
 
 pub mod eval;
