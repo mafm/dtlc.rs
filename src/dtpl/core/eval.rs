@@ -12,9 +12,11 @@ fn vpar(n:syntax::Name,) -> Box<model::Value> {
 
 fn vapp(v1:Box<model::Value>, v2:Box<model::Value>) -> Box<model::Value> {
     match v1 {
-        box model::VLam(v1f) => {
+        box model::VLam(ref v1c, ref v1e) => {
             // println!("vapp, vlam, v1f=<{}>, v2=<{}>", v1f.clone(), v2.clone());
-            v1f.apply(v2)
+            let mut e = v1e.clone();
+            e.push(v2);
+            chk(v1c.clone(), e)
         },
         box model::VNeutral(v1n) => {
             // println!("vapp, vneutral, v1n=<{}>, v2=<{}>", v1n.clone(), v2.clone());
@@ -33,9 +35,7 @@ pub fn chk(c:Box<syntax::CTerm>, e:Env) -> Box<model::Value> {
         },
         box syntax::Lam(cc) => {
             // println!("chk, lam, e=<{}>, cc=<{}>", e, cc.clone());
-            box model::VLam(
-                model::Closure::new(cc, e)
-            )
+            box model::VLam(cc, e)
         },
     }
 }
