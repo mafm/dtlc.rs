@@ -6,7 +6,7 @@ use core::syntax::{
     inf,
 };
 
-mod dom {
+mod sem {
     use core::domain::{
         neu,
         nrm,
@@ -40,8 +40,8 @@ pub fn chk(c:chk::Chk, e:nrm::Env) -> nrm::Nrm {
 fn inf(i:inf::Inf, e:nrm::Env) -> nrm::Nrm {
     match i {
         inf::Ann(box ic, _) => { chk(ic, e) },
-        inf::App(box ii, box ic) => { dom::app(inf(ii, e.clone()), chk(ic, e)) },
-        inf::Par(ix) => { dom::par(ix) },
+        inf::App(box ii, box ic) => { sem::app(inf(ii, e.clone()), chk(ic, e)) },
+        inf::Par(ix) => { sem::par(ix) },
         inf::Var(iu) => { e[iu].clone() },
     }
 }
