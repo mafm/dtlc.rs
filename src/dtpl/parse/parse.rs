@@ -11,8 +11,8 @@ name
   -> Box<syntax::Name>
     = [0-9]+
         {
-            box syntax::Bound(
-                from_str::<uint>(match_str).unwrap()
+            box syntax::Const(
+                String::from_str(match_str)
             )
         }
 "#)
