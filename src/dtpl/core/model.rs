@@ -11,13 +11,13 @@ pub enum Neutral {
 #[deriving(Clone)]
 #[deriving(Show)]
 pub enum Value {
-    VLam(Box<FunLike>),
+    VLam(Box<Closure>),
     VNeutral(Box<Neutral>),
 }
 
 #[deriving(Clone)]
 #[deriving(Show)]
-pub struct FunLike {
+pub struct Closure {
     chk: Box<syntax::CTerm>,
     env: Vec<Box<Value>>,
 }
@@ -28,15 +28,15 @@ pub struct FunLike {
 //   the apply method.
 //
 //   Another possibility might be to use traits to implement different versions
-//   of the apply method. We might need to make FunLike parametric somehow in
+//   of the apply method. We might need to make Closure parametric somehow in
 //   that case.
 //
 //   Also might be able to do something clever with associated types and
 //   multidispatch to get a nicer encoding.
-impl FunLike {
-    pub fn new(c:Box<syntax::CTerm>, e:Vec<Box<Value>>) -> FunLike {
+impl Closure {
+    pub fn new(c:Box<syntax::CTerm>, e:Vec<Box<Value>>) -> Closure {
         // println!("new")
-        FunLike {
+        Closure {
             chk: c,
             env: e,
         }

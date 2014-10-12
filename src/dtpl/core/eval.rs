@@ -34,7 +34,7 @@ pub fn chk(c:Box<syntax::CTerm>, e:Env) -> Box<model::Value> {
         box syntax::Lam(cc) => {
             // println!("chk, lam, e=<{}>, cc=<{}>", e, cc.clone());
             box model::VLam(
-                box model::FunLike::new(cc, e)
+                box model::Closure::new(cc, e)
             )
         },
     }
