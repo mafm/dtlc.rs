@@ -34,7 +34,7 @@ mod example {
                     ),
                 )
             );
-            let term_eval: nrm::Nrm = eval::chk(term_orig, Vec::new());
+            let term_eval: nrm::Nrm = eval::chk(term_orig, vec![]);
             println!("result:\n\t{}", term_eval);
         }
 
