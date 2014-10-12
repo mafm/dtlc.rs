@@ -1,60 +1,60 @@
 use core::model;
 use core::syntax;
 
-pub type Env = Vec<Box<model::Value>>;
+pub type Env = Vec<model::Value>;
 
-fn vpar(n:syntax::Name,) -> Box<model::Value> {
+fn vpar(n:syntax::Name,) -> model::Value {
     // println!("vpar");
-    box model::VNeutral(
+    model::VNeutral(
         box model::NPar(n)
     )
 }
 
-fn vapp(v1:Box<model::Value>, v2:Box<model::Value>) -> Box<model::Value> {
-    match v1 {
-        box model::VLam(ref v1c, ref v1e) => {
+fn vapp(v1:&model::Value, v2:&model::Value) -> model::Value {
+    match *v1 {
+        model::VLam(box ref v1c, ref v1e) => {
             // println!("vapp, vlam, v1f=<{}>, v2=<{}>", v1f.clone(), v2.clone());
             let mut e = v1e.clone();
-            e.push(v2);
-            chk(v1c.clone(), e)
+            e.push(v2.clone());
+            chk(v1c, e)
         },
-        box model::VNeutral(v1n) => {
+        model::VNeutral(ref v1n) => {
             // println!("vapp, vneutral, v1n=<{}>, v2=<{}>", v1n.clone(), v2.clone());
-            box model::VNeutral(
-                box model::NApp(v1n, v2)
+            model::VNeutral(
+                box model::NApp(v1n.clone(), box v2.clone())
             )
         },
     }
 }
 
-pub fn chk(c:Box<syntax::CTerm>, e:Env) -> Box<model::Value> {
-    match c {
-        box syntax::Inf(ci) => {
+pub fn chk(c:&syntax::CTerm, e:Env) -> model::Value {
+    match *c {
+        syntax::Inf(box ref ci) => {
             // println!("chk, inf, e=<{}>, ci=<{}>", e, ci.clone());
             inf(ci, e)
         },
-        box syntax::Lam(cc) => {
+        syntax::Lam(ref cc) => {
             // println!("chk, lam, e=<{}>, cc=<{}>", e, cc.clone());
-            box model::VLam(cc, e)
+            model::VLam(cc.clone(), e)
         },
     }
 }
 
-fn inf(i:Box<syntax::ITerm>, e:Env) -> Box<model::Value> {
-    match i {
-        box syntax::Ann(ref ic, ref t) => {
+fn inf(i:&syntax::ITerm, e:Env) -> model::Value {
+    match *i {
+        syntax::Ann(box ref ic, _) => {
             // println!("inf, ann, e=<{}>, ic=<{}>, t=<{}>", e, ic.clone(), t.clone());
-            chk(ic.clone(), e)
+            chk(ic, e)
         },
-        box syntax::App(ref ii, ref ic) => {
+        syntax::App(box ref ii, box ref ic) => {
             // println!("inf, app, e=<{}>, ii=<{}>, ic=<{}>", e, ii.clone(), ic.clone());
-            vapp(inf(ii.clone(), e.clone()), chk(ic.clone(), e))
+            vapp(&inf(ii, e.clone()), &chk(ic, e))
         },
-        box syntax::Par(ix) => {
+        syntax::Par(ref ix) => {
             // println!("inf, par, e=<{}>, ix=<{}>", e, ix.clone());
-            vpar(ix)
+            vpar(ix.clone())
         },
-        box syntax::Var(iu) => {
+        syntax::Var(iu) => {
             // println!("inf, var, e=<{}>, iu=<{}>", e, iu.clone());
             e[iu].clone()
         },

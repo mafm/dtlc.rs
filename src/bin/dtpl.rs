@@ -7,8 +7,8 @@ use dtpl::parse;
 
 fn example_eval() {
     println!("evaluating:\n\t\"((\\x. x) : A -> A) welp\"");
-    let term_orig: Box<syntax::CTerm> =
-        box syntax::Inf(
+    let term_orig: syntax::CTerm =
+        syntax::Inf(
             box syntax::App(
                 box syntax::Ann(
                     box syntax::Lam(
@@ -38,7 +38,7 @@ fn example_eval() {
                 ),
             )
         );
-    let term_eval: Box<model::Value> = eval::chk(term_orig, Vec::new());
+    let term_eval: model::Value = eval::chk(&term_orig, Vec::new());
     println!("result:\n\t{}", term_eval);
 }
 
