@@ -1,3 +1,3 @@
 pub mod eval;
-pub mod model;
+pub mod domain;
 pub mod syntax;

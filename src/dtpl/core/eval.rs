@@ -1,4 +1,4 @@
-use core::model::{
+use core::domain::{
     neu,
     nrm,
 };

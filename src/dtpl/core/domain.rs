@@ -1,5 +1,5 @@
 pub mod neu {
-    use core::model::nrm;
+    use core::domain::nrm;
     use core::syntax::sym;
     #[deriving(Clone)]
     #[deriving(Show)]
@@ -11,7 +11,7 @@ pub mod neu {
 
 pub mod nrm {
     use core::eval;
-    use core::model::neu;
+    use core::domain::neu;
     use core::syntax::chk;
     #[deriving(Clone)]
     #[deriving(Show)]

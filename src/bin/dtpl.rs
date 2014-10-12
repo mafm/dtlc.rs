@@ -2,7 +2,7 @@ extern crate dtpl;
 
 mod example {
     use dtpl::core::eval;
-    use dtpl::core::model::{
+    use dtpl::core::domain::{
         nrm,
     };
     use dtpl::core::syntax::{
