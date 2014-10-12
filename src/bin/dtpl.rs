@@ -4,7 +4,7 @@ use dtpl::parse;
 use dtpl::core::syntax;
 
 fn example_parse() {
-    println!("parsing :\n\t\"42\"", )
+    println!("parsing :\n\t\"42\"")
     let name: Box<syntax::Name> = box syntax::Bound(42);
     let pres: Result<Box<syntax::Name>,String> = parse::name("42");
     assert_eq!(pres, Ok(name));
