@@ -3,7 +3,7 @@ use core::syntax;
 
 pub type Env = Vec<Box<model::Value>>;
 
-fn vpar(n:Box<syntax::Name>,) -> Box<model::Value> {
+fn vpar(n:syntax::Name,) -> Box<model::Value> {
     // println!("vpar");
     box model::VNeutral(
         box model::NPar(n)
@@ -34,7 +34,7 @@ pub fn chk(c:Box<syntax::CTerm>, e:Env) -> Box<model::Value> {
         box syntax::Lam(cc) => {
             // println!("chk, lam, e=<{}>, cc=<{}>", e, cc.clone());
             box model::VLam(
-                box model::Closure::new(cc, e)
+                model::Closure::new(cc, e)
             )
         },
     }

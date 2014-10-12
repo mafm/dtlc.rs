@@ -19,7 +19,7 @@ pub enum Name {
 #[deriving(PartialOrd)]
 #[deriving(Show)]
 pub enum Type {
-    TPar(Box<Name>),
+    TPar(Name),
     Fun(Box<Type>, Box<Type>),
 }
 
@@ -46,5 +46,5 @@ pub enum ITerm {
     Ann(Box<CTerm>, Box<Type>),
     App(Box<ITerm>, Box<CTerm>),
     Var(uint),
-    Par(Box<Name>),
+    Par(Name),
 }

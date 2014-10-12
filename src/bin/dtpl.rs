@@ -18,16 +18,22 @@ fn example_eval() {
                     ),
                     box syntax::Fun(
                         box syntax::TPar(
-                            box syntax::Const(String::from_str("uint"))
+                            syntax::Const(
+                                String::from_str("A")
+                            )
                         ),
                         box syntax::TPar(
-                            box syntax::Const(String::from_str("uint"))
+                            syntax::Const(
+                                String::from_str("A")
+                            )
                         ),
                     ),
                 ),
                 box syntax::Inf(
                     box syntax::Par(
-                        box syntax::Const(String::from_str("welp"))
+                        syntax::Const(
+                            String::from_str("welp")
+                        )
                     )
                 ),
             )
@@ -38,7 +44,9 @@ fn example_eval() {
 
 fn example_parse() {
     println!("parsing:\n\t\"42\"")
-    let name: Box<syntax::Name> = box syntax::Const(String::from_str("42"));
+    let name: Box<syntax::Name> = box syntax::Const(
+        String::from_str("42")
+    );
     let pres: Result<Box<syntax::Name>,String> = parse::name("42");
     assert_eq!(pres, Ok(name));
     println!("parsed:\n\t{}", pres);
@@ -48,7 +56,7 @@ fn example_print() {
     // A
     let ty_atom: Box<syntax::Type> =
         box syntax::TPar(
-            box syntax::Const(
+            syntax::Const(
                 String::from_str("A")
             )
         );

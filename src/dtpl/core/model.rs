@@ -4,14 +4,14 @@ use core::syntax;
 #[deriving(Clone)]
 #[deriving(Show)]
 pub enum Neutral {
-    NPar(Box<syntax::Name>),
+    NPar(syntax::Name),
     NApp(Box<Neutral>, Box<Value>),
 }
 
 #[deriving(Clone)]
 #[deriving(Show)]
 pub enum Value {
-    VLam(Box<Closure>),
+    VLam(Closure),
     VNeutral(Box<Neutral>),
 }
 
