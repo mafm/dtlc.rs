@@ -2,8 +2,8 @@
 name = "rust-simple-dtpl"
 version = "0.0.1"
 dependencies = [
- "docopt 0.6.4 (git+https://github.com/docopt/docopt.rs#21ce1190ef7631f71e52de5e13eb4d131564b82e)",
- "docopt_macros 0.6.4 (git+https://github.com/docopt/docopt.rs#21ce1190ef7631f71e52de5e13eb4d131564b82e)",
+ "docopt 0.6.4 (git+https://github.com/docopt/docopt.rs#7515c10dcc94a7263d5e062c434b1465167673dd)",
+ "docopt_macros 0.6.4 (git+https://github.com/docopt/docopt.rs#7515c10dcc94a7263d5e062c434b1465167673dd)",
  "peg 0.1.0 (git+https://github.com/kevinmehall/rust-peg#04c307ac857bb0c5e1b4a990a7be6b523db0d830)",
  "quickcheck 0.1.2 (git+https://github.com/BurntSushi/quickcheck#328770023126c17a485dd013e537c8c34289ee2d)",
  "quickcheck_macros 0.1.2 (git+https://github.com/BurntSushi/quickcheck#328770023126c17a485dd013e537c8c34289ee2d)",
@@ -12,14 +12,14 @@ dependencies = [
 [[package]]
 name = "docopt"
 version = "0.6.4"
-source = "git+https://github.com/docopt/docopt.rs#21ce1190ef7631f71e52de5e13eb4d131564b82e"
+source = "git+https://github.com/docopt/docopt.rs#7515c10dcc94a7263d5e062c434b1465167673dd"
 
 [[package]]
 name = "docopt_macros"
 version = "0.6.4"
-source = "git+https://github.com/docopt/docopt.rs#21ce1190ef7631f71e52de5e13eb4d131564b82e"
+source = "git+https://github.com/docopt/docopt.rs#7515c10dcc94a7263d5e062c434b1465167673dd"
 dependencies = [
- "docopt 0.6.4 (git+https://github.com/docopt/docopt.rs#21ce1190ef7631f71e52de5e13eb4d131564b82e)",
+ "docopt 0.6.4 (git+https://github.com/docopt/docopt.rs#7515c10dcc94a7263d5e062c434b1465167673dd)",
 ]
 
 [[package]]
