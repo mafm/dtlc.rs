@@ -25,8 +25,8 @@ git = "https://github.com/docopt/docopt.rs"
 [dependencies.peg]
 git = "https://github.com/kevinmehall/rust-peg"
 
-[dependencies.quickcheck]
+[dev-dependencies.quickcheck]
 git = "https://github.com/BurntSushi/quickcheck"
 
-[dependencies.quickcheck_macros]
+[dev-dependencies.quickcheck_macros]
 git = "https://github.com/BurntSushi/quickcheck"
