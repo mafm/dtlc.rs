@@ -35,3 +35,9 @@ $ cargo build
 ```
 $ cargo run
 ```
+
+## Testing
+
+```
+$ cargo test
+```
