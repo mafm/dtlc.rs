@@ -5,10 +5,10 @@ extern crate core;
 extern crate quickcheck_macros;
 extern crate quickcheck;
 
-extern crate dtpl;
+extern crate dtlc;
 
 mod tm {
-    use dtpl::core::syntax::{
+    use dtlc::core::syntax::{
         chk,
         inf,
         // sym,
@@ -118,7 +118,7 @@ mod tm {
 mod wrap {
     use core::fmt;
     use quickcheck as qchk;
-    use dtpl::core::syntax::{
+    use dtlc::core::syntax::{
         chk,
     };
     use super::tm;
@@ -169,11 +169,11 @@ mod wrap {
 }
 
 mod test {
-    use dtpl::core::domain::{
+    use dtlc::core::domain::{
         nrm,
     };
-    use dtpl::core::normal;
-    use dtpl::core::syntax::{
+    use dtlc::core::normal;
+    use dtlc::core::syntax::{
         chk,
         inf,
         sym,

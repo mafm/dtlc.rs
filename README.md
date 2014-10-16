@@ -1,6 +1,6 @@
-# rust-simple-dtpl
+# rust-dtlc
 
-Rust implementation of a simple dependently typed language.
+Rust implementation of a dependently typed λ-calculus.
 
 ## Synopsis
 

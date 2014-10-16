@@ -1,4 +1,4 @@
-#![crate_name="dtpl"]
+#![crate_name="dtlc"]
 #![crate_type="rlib"]
 
 #![feature(phase)]

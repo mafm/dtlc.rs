@@ -1,5 +1,5 @@
 [root]
-name = "rust-simple-dtpl"
+name = "rust-dtlc"
 version = "0.0.1"
 dependencies = [
  "docopt 0.6.4 (git+https://github.com/docopt/docopt.rs#7515c10dcc94a7263d5e062c434b1465167673dd)",

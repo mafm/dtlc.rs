@@ -1,6 +1,6 @@
 [package]
 
-name    = "rust-simple-dtpl"
+name    = "rust-dtlc"
 version = "0.0.1"
 authors = [ "Darin Morrison <darinmorrison+rust@gmail.com>" ]
 
@@ -8,11 +8,11 @@ authors = [ "Darin Morrison <darinmorrison+rust@gmail.com>" ]
 debug = false
 
 [lib]
-name = "dtpl"
-path = "src/dtpl/lib.rs"
+name = "dtlc"
+path = "src/dtlc/lib.rs"
 
 [[bin]]
-name = "dtpl"
+name = "dtlc"
 doc  = false
 test = false
 
