@@ -64,7 +64,7 @@ mod wrap {
 
 }
 
-mod prop {
+pub mod prop {
     // local mod imports
     use dtlc::core::domain::{
         nrm,
