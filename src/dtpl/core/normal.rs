@@ -30,6 +30,11 @@ mod sem {
     }
 }
 
+pub fn lookup(i:uint, e:nrm::Env) -> nrm::Nrm {
+    // index relative to the end since Vec::push adds elements at the back
+    e[ e.len() - (i + 1) ].clone()
+}
+
 pub fn chk(c:chk::Chk, e:nrm::Env) -> nrm::Nrm {
     match c {
         chk::Inf(box ci) => { inf(ci, e) },
@@ -42,6 +47,6 @@ fn inf(i:inf::Inf, e:nrm::Env) -> nrm::Nrm {
         inf::Ann(box ic, _) => { chk(ic, e) },
         inf::App(box ii, box ic) => { sem::app(inf(ii, e.clone()), chk(ic, e)) },
         inf::Par(ix) => { sem::par(ix) },
-        inf::Var(iu) => { e[iu].clone() },
+        inf::Var(iu) => { lookup(iu, e) },
     }
 }
