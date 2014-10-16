@@ -1,26 +1,23 @@
-// rust feature flags
-#![feature(phase)]
-
-// external imports
+// external crates
 extern crate core;
-#[phase(plugin)]
-extern crate quickcheck_macros;
 extern crate quickcheck;
 
-// local import
+// local crates
 extern crate dtlc;
 
-// link examples/church
-#[path="../examples/church.rs"]
-mod church;
-
 mod wrap {
+    // external mod imports
     use core::fmt;
     use quickcheck as qchk;
+
+    // local mod imports
     use dtlc::core::syntax::{
         chk,
     };
-    use super::church;
+
+    // custom mod imports
+    #[path="../../examples/church.rs"]  // link examples/church
+    mod church;
 
     pub struct Wrap<A:Clone,T>(A);
 
@@ -67,7 +64,8 @@ mod wrap {
 
 }
 
-mod test {
+mod prop {
+    // local mod imports
     use dtlc::core::domain::{
         nrm,
     };
@@ -78,10 +76,13 @@ mod test {
         sym,
         typ,
     };
-    use super::church;
     use super::wrap::{
         Bool,
     };
+
+    // custom mod imports
+    #[path="../../examples/church.rs"]
+    mod church;
 
     fn val_eq(lhs:&nrm::Nrm, rhs:&nrm::Nrm) -> bool {
         match (lhs, rhs) {
@@ -93,8 +94,7 @@ mod test {
     //// axioms from http://ncatlab.org/nlab/show/Boolean+algebra
 
     // and a tt == a
-    #[quickcheck]
-    fn qc_bool_and_tt(wa:Bool) -> bool {
+    pub fn bool_and_tt(wa:Bool) -> bool {
         let a = wa.unwrap();
         let tlhs =
             chk::Inf(
@@ -116,8 +116,7 @@ mod test {
     }
 
     // or a ff == a
-    #[quickcheck]
-    fn qc_bool_or_ff(wa:Bool) -> bool {
+    pub fn bool_or_ff(wa:Bool) -> bool {
         let a = wa.unwrap();
         let tlhs =
             chk::Inf(
@@ -139,8 +138,7 @@ mod test {
     }
 
     // and a (and b c) == and (and a b) c
-    #[quickcheck]
-    fn qc_bool_and_asc(wa:Bool, wb:Bool, wc:Bool) -> bool {
+    pub fn bool_and_asc(wa:Bool, wb:Bool, wc:Bool) -> bool {
         let a = wa.unwrap();
         let b = wb.unwrap();
         let c = wc.unwrap();
@@ -198,8 +196,7 @@ mod test {
     }
 
     // or a (or b c) == or (or a b) c
-    #[quickcheck]
-    fn qc_bool_or_asc(wa:Bool, wb:Bool, wc:Bool) -> bool {
+    pub fn bool_or_asc(wa:Bool, wb:Bool, wc:Bool) -> bool {
         let a = wa.unwrap();
         let b = wb.unwrap();
         let c = wc.unwrap();
@@ -257,8 +254,7 @@ mod test {
     }
 
     // and a b == and b a
-    #[quickcheck]
-    fn qc_bool_and_comm(wa:Bool, wb:Bool) -> bool {
+    pub fn bool_and_comm(wa:Bool, wb:Bool) -> bool {
         let a = wa.unwrap();
         let b = wb.unwrap();
         let tlhs =
@@ -293,8 +289,7 @@ mod test {
     }
 
     // or a b == or b a
-    #[quickcheck]
-    fn qc_bool_or_comm(wa:Bool, wb:Bool) -> bool {
+    pub fn bool_or_comm(wa:Bool, wb:Bool) -> bool {
         let a = wa.unwrap();
         let b = wb.unwrap();
         let tlhs =
@@ -329,8 +324,7 @@ mod test {
     }
 
     // and a (or a b) == a
-    #[quickcheck]
-    fn qc_bool_and_or(wa:Bool, wb:Bool) -> bool {
+    pub fn bool_and_or_red(wa:Bool, wb:Bool) -> bool {
         let a = wa.unwrap();
         let b = wb.unwrap();
         let tlhs =
@@ -364,8 +358,7 @@ mod test {
     }
 
     // or a (and a b) = a
-    #[quickcheck]
-    fn qc_bool_or_and(wa:Bool, wb:Bool) -> bool {
+    pub fn bool_or_and_red(wa:Bool, wb:Bool) -> bool {
         let a = wa.unwrap();
         let b = wb.unwrap();
         let tlhs =
@@ -399,8 +392,7 @@ mod test {
     }
 
     // and a (or b c) == or (and a b) (and a c)
-    #[quickcheck]
-    fn qc_bool_and_or_dist(wa:Bool, wb:Bool, wc:Bool) -> bool {
+    pub fn bool_and_or_dist(wa:Bool, wb:Bool, wc:Bool) -> bool {
         let a = wa.unwrap();
         let b = wb.unwrap();
         let c = wc.unwrap();
@@ -469,8 +461,7 @@ mod test {
     }
 
     // or a (and b c) == and (or a b) (or a c)
-    #[quickcheck]
-    fn qc_bool_or_and_dist(wa:Bool, wb:Bool, wc:Bool) -> bool {
+    pub fn bool_or_and_dist(wa:Bool, wb:Bool, wc:Bool) -> bool {
         let a = wa.unwrap();
         let b = wb.unwrap();
         let c = wc.unwrap();
@@ -539,8 +530,7 @@ mod test {
     }
 
     // and a (not a) == ff
-    #[quickcheck]
-    fn qc_bool_law_non_contradiction(wa:Bool) -> bool {
+    pub fn bool_law_non_contradiction(wa:Bool) -> bool {
         let a = wa.unwrap();
         let tlhs =
             chk::Inf(
@@ -570,8 +560,7 @@ mod test {
     }
 
     // or a (not a) == tt
-    #[quickcheck]
-    fn qc_bool_law_excluded_middle(wa:Bool) -> bool {
+    pub fn bool_law_excluded_middle(wa:Bool) -> bool {
         let a = wa.unwrap();
         let tlhs =
             chk::Inf(
@@ -598,6 +587,87 @@ mod test {
         let vlhs = normal::chk(tlhs, vec![]);
         let vrhs = normal::chk(trhs, vec![]);
         val_eq(&vlhs, &vrhs)
+    }
+
+}
+
+mod church {
+    // external mod imports
+    use quickcheck as qchk;
+
+    // local mod imports
+    use super::prop;
+
+    // and a tt == a
+    #[test]
+    fn bool_and_tt() -> () {
+        qchk::quickcheck(prop::bool_and_tt)
+    }
+
+    // or a ff == a
+    #[test]
+    fn bool_or_ff() -> () {
+        qchk::quickcheck(prop::bool_or_ff)
+    }
+
+    // and a (and b c) == and (and a b) c
+    #[test]
+    fn bool_and_asc() -> () {
+        qchk::quickcheck(prop::bool_and_asc)
+    }
+
+    // or a (or b c) == or (or a b) c
+    #[test]
+    fn bool_or_asc() -> () {
+        qchk::quickcheck(prop::bool_or_asc)
+    }
+
+    // and a b == and b a
+    #[test]
+    fn bool_and_comm() -> () {
+        qchk::quickcheck(prop::bool_and_comm)
+    }
+
+    // or a b == or b a
+    #[test]
+    fn bool_or_comm() -> () {
+        qchk::quickcheck(prop::bool_or_comm)
+    }
+
+    // and a (or a b) == a
+    #[test]
+    fn bool_and_or_red() -> () {
+        qchk::quickcheck(prop::bool_and_or_red)
+    }
+
+    // or a (and a b) = a
+    #[test]
+    fn bool_or_and_red() -> () {
+        qchk::quickcheck(prop::bool_or_and_red)
+    }
+
+    // and a (or b c) == or (and a b) (and a c)
+    #[test]
+    fn bool_and_or_dist() -> () {
+        qchk::quickcheck(prop::bool_and_or_dist)
+    }
+
+    // or a (and b c) == and (or a b) (or a c)
+    #[test]
+    fn bool_or_and_dist() -> () {
+        qchk::quickcheck(prop::bool_or_and_dist)
+    }
+
+    // and a (not a) == ff
+    #[test]
+    fn bool_law_non_contradiction() -> () {
+        qchk::quickcheck(prop::bool_law_non_contradiction)
+    }
+
+    // or a (not a) == tt
+    #[test]
+    fn bool_law_excluded_middle() -> () {
+        qchk::quickcheck(prop::bool_law_excluded_middle)
     }
 
 }
