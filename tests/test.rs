@@ -184,8 +184,8 @@ mod test {
         Bool,
     };
 
-    fn val_eq(lhs:nrm::Nrm, rhs:nrm::Nrm) -> bool {
-        match (&lhs, &rhs) {
+    fn val_eq(lhs:&nrm::Nrm, rhs:&nrm::Nrm) -> bool {
+        match (lhs, rhs) {
             (&nrm::Abs(ref c1, _), &nrm::Abs(ref c2, _)) => { c1 == c2 },
             _ => { lhs == rhs }
         }
@@ -213,7 +213,7 @@ mod test {
         let trhs = a;
         let vlhs = normal::chk(tlhs, vec![]);
         let vrhs = normal::chk(trhs, vec![]);
-        val_eq(vlhs, vrhs)
+        val_eq(&vlhs, &vrhs)
     }
 
     // or a ff == a
@@ -236,7 +236,7 @@ mod test {
         let trhs = a.clone();
         let vlhs = normal::chk(tlhs, vec![]);
         let vrhs = normal::chk(trhs, vec![]);
-        val_eq(vlhs, vrhs)
+        val_eq(&vlhs, &vrhs)
     }
 
     // and a (and b c) == and (and a b) c
@@ -295,7 +295,7 @@ mod test {
             );
         let vlhs = normal::chk(tlhs, vec![]);
         let vrhs = normal::chk(trhs, vec![]);
-        val_eq(vlhs, vrhs)
+        val_eq(&vlhs, &vrhs)
     }
 
     // or a (or b c) == or (or a b) c
@@ -354,7 +354,7 @@ mod test {
             );
         let vlhs = normal::chk(tlhs, vec![]);
         let vrhs = normal::chk(trhs, vec![]);
-        val_eq(vlhs, vrhs)
+        val_eq(&vlhs, &vrhs)
     }
 
     // and a b == and b a
@@ -390,7 +390,7 @@ mod test {
             );
         let vlhs = normal::chk(tlhs, vec![]);
         let vrhs = normal::chk(trhs, vec![]);
-        val_eq(vlhs, vrhs)
+        val_eq(&vlhs, &vrhs)
     }
 
     // or a b == or b a
@@ -426,7 +426,7 @@ mod test {
             );
         let vlhs = normal::chk(tlhs, vec![]);
         let vrhs = normal::chk(trhs, vec![]);
-        val_eq(vlhs, vrhs)
+        val_eq(&vlhs, &vrhs)
     }
 
     // and a (or a b) == a
@@ -461,7 +461,7 @@ mod test {
         let trhs = a;
         let vlhs = normal::chk(tlhs, vec![]);
         let vrhs = normal::chk(trhs, vec![]);
-        val_eq(vlhs, vrhs)
+        val_eq(&vlhs, &vrhs)
     }
 
     // or a (and a b) = a
@@ -496,7 +496,7 @@ mod test {
         let trhs = a;
         let vlhs = normal::chk(tlhs, vec![]);
         let vrhs = normal::chk(trhs, vec![]);
-        val_eq(vlhs, vrhs)
+        val_eq(&vlhs, &vrhs)
     }
 
     // and a (or b c) == or (and a b) (and a c)
@@ -566,7 +566,7 @@ mod test {
             );
         let vlhs = normal::chk(tlhs, vec![]);
         let vrhs = normal::chk(trhs, vec![]);
-        val_eq(vlhs, vrhs)
+        val_eq(&vlhs, &vrhs)
     }
 
     // or a (and b c) == and (or a b) (or a c)
@@ -636,7 +636,7 @@ mod test {
             );
         let vlhs = normal::chk(tlhs, vec![]);
         let vrhs = normal::chk(trhs, vec![]);
-        val_eq(vlhs, vrhs)
+        val_eq(&vlhs, &vrhs)
     }
 
     // and a (not a) == ff
@@ -667,7 +667,7 @@ mod test {
         let trhs = tm::mk_ff();
         let vlhs = normal::chk(tlhs, vec![]);
         let vrhs = normal::chk(trhs, vec![]);
-        val_eq(vlhs, vrhs)
+        val_eq(&vlhs, &vrhs)
     }
 
     // or a (not a) == tt
@@ -698,7 +698,7 @@ mod test {
         let trhs = tm::mk_tt();
         let vlhs = normal::chk(tlhs, vec![]);
         let vrhs = normal::chk(trhs, vec![]);
-        val_eq(vlhs, vrhs)
+        val_eq(&vlhs, &vrhs)
     }
 
 }
