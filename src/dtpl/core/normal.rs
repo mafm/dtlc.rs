@@ -14,7 +14,7 @@ mod sem {
     use core::syntax::{
         sym,
     };
-    use core::normal::{
+    use super::{
         chk,
     };
 

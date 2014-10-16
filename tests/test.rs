@@ -121,7 +121,7 @@ mod wrap {
     use dtpl::core::syntax::{
         chk,
     };
-    use tm;
+    use super::tm;
 
     pub struct Wrap<A:Clone,T>(A);
 
@@ -179,8 +179,8 @@ mod test {
         sym,
         typ,
     };
-    use tm;
-    use wrap::{
+    use super::tm;
+    use super::wrap::{
         Bool,
     };
 

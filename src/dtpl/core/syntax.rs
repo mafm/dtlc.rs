@@ -14,7 +14,7 @@ pub mod sym {
 }
 
 pub mod typ {
-    use core::syntax::sym;
+    use super::sym;
     #[deriving(Clone)]
     #[deriving(Eq)]
     #[deriving(Hash)]
@@ -29,8 +29,8 @@ pub mod typ {
 }
 
 pub mod chk {
-    use core::syntax::chk;
-    use core::syntax::inf;
+    use super::chk;
+    use super::inf;
     #[deriving(Clone)]
     #[deriving(Eq)]
     #[deriving(Hash)]
@@ -45,10 +45,10 @@ pub mod chk {
 }
 
 pub mod inf {
-    use core::syntax::chk;
-    use core::syntax::inf;
-    use core::syntax::sym;
-    use core::syntax::typ;
+    use super::chk;
+    use super::inf;
+    use super::sym;
+    use super::typ;
     #[deriving(Clone)]
     #[deriving(Eq)]
     #[deriving(Hash)]
