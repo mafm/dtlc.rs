@@ -94,7 +94,7 @@ pub mod prop {
     //// axioms from http://ncatlab.org/nlab/show/Boolean+algebra
 
     // and a tt == a
-    pub fn bool_and_tt(wa:&Bool) -> bool {
+    pub fn bool_and_tt_idn(wa:&Bool) -> bool {
         let a = wa.unwrap();
         let tlhs =
             chk::Inf(
@@ -116,7 +116,7 @@ pub mod prop {
     }
 
     // or a ff == a
-    pub fn bool_or_ff(wa:&Bool) -> bool {
+    pub fn bool_or_ff_idn(wa:&Bool) -> bool {
         let a = wa.unwrap();
         let tlhs =
             chk::Inf(
@@ -254,7 +254,7 @@ pub mod prop {
     }
 
     // and a b == and b a
-    pub fn bool_and_comm(wa:&Bool, wb:&Bool) -> bool {
+    pub fn bool_and_com(wa:&Bool, wb:&Bool) -> bool {
         let a = wa.unwrap();
         let b = wb.unwrap();
         let tlhs =
@@ -289,7 +289,7 @@ pub mod prop {
     }
 
     // or a b == or b a
-    pub fn bool_or_comm(wa:&Bool, wb:&Bool) -> bool {
+    pub fn bool_or_com(wa:&Bool, wb:&Bool) -> bool {
         let a = wa.unwrap();
         let b = wb.unwrap();
         let tlhs =
@@ -392,7 +392,7 @@ pub mod prop {
     }
 
     // and a (or b c) == or (and a b) (and a c)
-    pub fn bool_and_or_dist(wa:&Bool, wb:&Bool, wc:&Bool) -> bool {
+    pub fn bool_and_or_dst(wa:&Bool, wb:&Bool, wc:&Bool) -> bool {
         let a = wa.unwrap();
         let b = wb.unwrap();
         let c = wc.unwrap();
@@ -461,7 +461,7 @@ pub mod prop {
     }
 
     // or a (and b c) == and (or a b) (or a c)
-    pub fn bool_or_and_dist(wa:&Bool, wb:&Bool, wc:&Bool) -> bool {
+    pub fn bool_or_and_dst(wa:&Bool, wb:&Bool, wc:&Bool) -> bool {
         let a = wa.unwrap();
         let b = wb.unwrap();
         let c = wc.unwrap();
@@ -530,7 +530,7 @@ pub mod prop {
     }
 
     // and a (not a) == ff
-    pub fn bool_law_non_contradiction(wa:&Bool) -> bool {
+    pub fn bool_law_non_con(wa:&Bool) -> bool {
         let a = wa.unwrap();
         let tlhs =
             chk::Inf(
@@ -560,7 +560,7 @@ pub mod prop {
     }
 
     // or a (not a) == tt
-    pub fn bool_law_excluded_middle(wa:&Bool) -> bool {
+    pub fn bool_law_exc_mid(wa:&Bool) -> bool {
         let a = wa.unwrap();
         let tlhs =
             chk::Inf(
@@ -602,18 +602,18 @@ mod church {
 
     // and a tt == a
     #[test]
-    fn bool_and_tt() -> () {
+    fn bool_and_tt_idn() -> () {
         let gen = &mut qchk::gen(rand::task_rng(), qchk::DEFAULT_SIZE);
         let wa: wrap::Bool = qchk::Arbitrary::arbitrary(gen);
-        assert!(prop::bool_and_tt(&wa))
+        assert!(prop::bool_and_tt_idn(&wa))
     }
 
     // or a ff == a
     #[test]
-    fn bool_or_ff() -> () {
+    fn bool_or_ff_idn() -> () {
         let gen = &mut qchk::gen(rand::task_rng(), qchk::DEFAULT_SIZE);
         let wa: wrap::Bool = qchk::Arbitrary::arbitrary(gen);
-        assert!(prop::bool_or_ff(&wa))
+        assert!(prop::bool_or_ff_idn(&wa))
     }
 
     // and a (and b c) == and (and a b) c
@@ -638,20 +638,20 @@ mod church {
 
     // and a b == and b a
     #[test]
-    fn bool_and_comm() -> () {
+    fn bool_and_com() -> () {
         let gen = &mut qchk::gen(rand::task_rng(), qchk::DEFAULT_SIZE);
         let wa: wrap::Bool = qchk::Arbitrary::arbitrary(gen);
         let wb: wrap::Bool = qchk::Arbitrary::arbitrary(gen);
-        assert!(prop::bool_and_comm(&wa, &wb))
+        assert!(prop::bool_and_com(&wa, &wb))
     }
 
     // or a b == or b a
     #[test]
-    fn bool_or_comm() -> () {
+    fn bool_or_com() -> () {
         let gen = &mut qchk::gen(rand::task_rng(), qchk::DEFAULT_SIZE);
         let wa: wrap::Bool = qchk::Arbitrary::arbitrary(gen);
         let wb: wrap::Bool = qchk::Arbitrary::arbitrary(gen);
-        assert!(prop::bool_or_comm(&wa, &wb))
+        assert!(prop::bool_or_com(&wa, &wb))
     }
 
     // and a (or a b) == a
@@ -674,38 +674,38 @@ mod church {
 
     // and a (or b c) == or (and a b) (and a c)
     #[test]
-    fn bool_and_or_dist() -> () {
+    fn bool_and_or_dst() -> () {
         let gen = &mut qchk::gen(rand::task_rng(), qchk::DEFAULT_SIZE);
         let wa: wrap::Bool = qchk::Arbitrary::arbitrary(gen);
         let wb: wrap::Bool = qchk::Arbitrary::arbitrary(gen);
         let wc: wrap::Bool = qchk::Arbitrary::arbitrary(gen);
-        assert!(prop::bool_and_or_dist(&wa, &wb, &wc))
+        assert!(prop::bool_and_or_dst(&wa, &wb, &wc))
     }
 
     // or a (and b c) == and (or a b) (or a c)
     #[test]
-    fn bool_or_and_dist() -> () {
+    fn bool_or_and_dst() -> () {
         let gen = &mut qchk::gen(rand::task_rng(), qchk::DEFAULT_SIZE);
         let wa: wrap::Bool = qchk::Arbitrary::arbitrary(gen);
         let wb: wrap::Bool = qchk::Arbitrary::arbitrary(gen);
         let wc: wrap::Bool = qchk::Arbitrary::arbitrary(gen);
-        assert!(prop::bool_or_and_dist(&wa, &wb, &wc))
+        assert!(prop::bool_or_and_dst(&wa, &wb, &wc))
     }
 
     // and a (not a) == ff
     #[test]
-    fn bool_law_non_contradiction() -> () {
+    fn bool_law_non_con() -> () {
         let gen = &mut qchk::gen(rand::task_rng(), qchk::DEFAULT_SIZE);
         let wa: wrap::Bool = qchk::Arbitrary::arbitrary(gen);
-        assert!(prop::bool_law_non_contradiction(&wa))
+        assert!(prop::bool_law_non_con(&wa))
     }
 
     // or a (not a) == tt
     #[test]
-    fn bool_law_excluded_middle() -> () {
+    fn bool_law_exc_mid() -> () {
         let gen = &mut qchk::gen(rand::task_rng(), qchk::DEFAULT_SIZE);
         let wa: wrap::Bool = qchk::Arbitrary::arbitrary(gen);
-        assert!(prop::bool_law_excluded_middle(&wa))
+        assert!(prop::bool_law_exc_mid(&wa))
     }
 
 }
