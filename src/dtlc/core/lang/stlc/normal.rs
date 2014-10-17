@@ -1,17 +1,17 @@
-use core::domain::{
+use super::domain::{
     nrm,
 };
-use core::syntax::{
+use super::syntax::{
     chk,
     inf,
 };
 
 mod sem {
-    use core::domain::{
+    use super::super::domain::{
         neu,
         nrm,
     };
-    use core::syntax::{
+    use super::super::syntax::{
         sym,
     };
     use super::{

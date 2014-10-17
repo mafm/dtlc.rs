@@ -1,6 +1,6 @@
 pub mod neu {
     use super::nrm;
-    use core::syntax::sym;
+    use super::super::syntax::sym;
     #[deriving(Clone)]
     #[deriving(Eq)]
     #[deriving(Ord)]
@@ -15,7 +15,7 @@ pub mod neu {
 
 pub mod nrm {
     use super::neu;
-    use core::syntax::chk;
+    use super::super::syntax::chk;
     #[deriving(Clone)]
     #[deriving(Eq)]
     #[deriving(Ord)]

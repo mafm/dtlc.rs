@@ -11,12 +11,12 @@ pub mod wrap {
     use quickcheck as qchk;
 
     // local mod imports
-    use dtlc::core::syntax::{
+    use dtlc::core::lang::stlc::syntax::{
         chk,
     };
 
     // custom mod imports
-    #[path="../../examples/church.rs"]  // link examples/church
+    #[path="../../examples/stlc_church.rs"]
     mod church;
 
     pub struct Wrap<A:Clone,T>(A);
@@ -66,11 +66,11 @@ pub mod wrap {
 
 pub mod prop {
     // local mod imports
-    use dtlc::core::domain::{
+    use dtlc::core::lang::stlc::domain::{
         nrm,
     };
-    use dtlc::core::normal;
-    use dtlc::core::syntax::{
+    use dtlc::core::lang::stlc::normal;
+    use dtlc::core::lang::stlc::syntax::{
         chk,
         inf,
         sym,
@@ -81,7 +81,7 @@ pub mod prop {
     };
 
     // custom mod imports
-    #[path="../../examples/church.rs"]
+    #[path="../../examples/stlc_church.rs"]
     mod church;
 
     fn val_eq(lhs:&nrm::Nrm, rhs:&nrm::Nrm) -> bool {

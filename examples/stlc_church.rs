@@ -1,6 +1,6 @@
 extern crate dtlc;
 
-use dtlc::core::syntax::{
+use dtlc::core::lang::stlc::syntax::{
     chk,
     inf,
 };

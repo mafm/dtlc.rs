@@ -20,7 +20,7 @@ use test::{
 };
 
 // custom mod imports
-#[path="../tests/church.rs"]
+#[path="../tests/stlc_church.rs"]
 mod test;
 
 // FIXME: not a good bench; probably too allocation heavy; better than nothing

@@ -4,7 +4,7 @@ extern crate peg_syntax_ext;
 pub use self::peg::sym;
 
 peg! peg(r#"
-use core::syntax;
+use core::lang::stlc::syntax;
 
 #[pub]
 sym
