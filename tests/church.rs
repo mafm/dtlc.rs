@@ -5,7 +5,7 @@ extern crate quickcheck;
 // local crates
 extern crate dtlc;
 
-mod wrap {
+pub mod wrap {
     // external mod imports
     use core::fmt;
     use quickcheck as qchk;
@@ -94,7 +94,7 @@ pub mod prop {
     //// axioms from http://ncatlab.org/nlab/show/Boolean+algebra
 
     // and a tt == a
-    pub fn bool_and_tt(wa:Bool) -> bool {
+    pub fn bool_and_tt(wa:&Bool) -> bool {
         let a = wa.unwrap();
         let tlhs =
             chk::Inf(
@@ -116,7 +116,7 @@ pub mod prop {
     }
 
     // or a ff == a
-    pub fn bool_or_ff(wa:Bool) -> bool {
+    pub fn bool_or_ff(wa:&Bool) -> bool {
         let a = wa.unwrap();
         let tlhs =
             chk::Inf(
@@ -138,7 +138,7 @@ pub mod prop {
     }
 
     // and a (and b c) == and (and a b) c
-    pub fn bool_and_asc(wa:Bool, wb:Bool, wc:Bool) -> bool {
+    pub fn bool_and_asc(wa:&Bool, wb:&Bool, wc:&Bool) -> bool {
         let a = wa.unwrap();
         let b = wb.unwrap();
         let c = wc.unwrap();
@@ -196,7 +196,7 @@ pub mod prop {
     }
 
     // or a (or b c) == or (or a b) c
-    pub fn bool_or_asc(wa:Bool, wb:Bool, wc:Bool) -> bool {
+    pub fn bool_or_asc(wa:&Bool, wb:&Bool, wc:&Bool) -> bool {
         let a = wa.unwrap();
         let b = wb.unwrap();
         let c = wc.unwrap();
@@ -254,7 +254,7 @@ pub mod prop {
     }
 
     // and a b == and b a
-    pub fn bool_and_comm(wa:Bool, wb:Bool) -> bool {
+    pub fn bool_and_comm(wa:&Bool, wb:&Bool) -> bool {
         let a = wa.unwrap();
         let b = wb.unwrap();
         let tlhs =
@@ -289,7 +289,7 @@ pub mod prop {
     }
 
     // or a b == or b a
-    pub fn bool_or_comm(wa:Bool, wb:Bool) -> bool {
+    pub fn bool_or_comm(wa:&Bool, wb:&Bool) -> bool {
         let a = wa.unwrap();
         let b = wb.unwrap();
         let tlhs =
@@ -324,7 +324,7 @@ pub mod prop {
     }
 
     // and a (or a b) == a
-    pub fn bool_and_or_red(wa:Bool, wb:Bool) -> bool {
+    pub fn bool_and_or_red(wa:&Bool, wb:&Bool) -> bool {
         let a = wa.unwrap();
         let b = wb.unwrap();
         let tlhs =
@@ -358,7 +358,7 @@ pub mod prop {
     }
 
     // or a (and a b) = a
-    pub fn bool_or_and_red(wa:Bool, wb:Bool) -> bool {
+    pub fn bool_or_and_red(wa:&Bool, wb:&Bool) -> bool {
         let a = wa.unwrap();
         let b = wb.unwrap();
         let tlhs =
@@ -392,7 +392,7 @@ pub mod prop {
     }
 
     // and a (or b c) == or (and a b) (and a c)
-    pub fn bool_and_or_dist(wa:Bool, wb:Bool, wc:Bool) -> bool {
+    pub fn bool_and_or_dist(wa:&Bool, wb:&Bool, wc:&Bool) -> bool {
         let a = wa.unwrap();
         let b = wb.unwrap();
         let c = wc.unwrap();
@@ -461,7 +461,7 @@ pub mod prop {
     }
 
     // or a (and b c) == and (or a b) (or a c)
-    pub fn bool_or_and_dist(wa:Bool, wb:Bool, wc:Bool) -> bool {
+    pub fn bool_or_and_dist(wa:&Bool, wb:&Bool, wc:&Bool) -> bool {
         let a = wa.unwrap();
         let b = wb.unwrap();
         let c = wc.unwrap();
@@ -530,7 +530,7 @@ pub mod prop {
     }
 
     // and a (not a) == ff
-    pub fn bool_law_non_contradiction(wa:Bool) -> bool {
+    pub fn bool_law_non_contradiction(wa:&Bool) -> bool {
         let a = wa.unwrap();
         let tlhs =
             chk::Inf(
@@ -560,7 +560,7 @@ pub mod prop {
     }
 
     // or a (not a) == tt
-    pub fn bool_law_excluded_middle(wa:Bool) -> bool {
+    pub fn bool_law_excluded_middle(wa:&Bool) -> bool {
         let a = wa.unwrap();
         let tlhs =
             chk::Inf(
@@ -594,80 +594,118 @@ pub mod prop {
 mod church {
     // external mod imports
     use quickcheck as qchk;
+    use std::rand;
 
     // local mod imports
     use super::prop;
+    use super::wrap;
 
     // and a tt == a
     #[test]
     fn bool_and_tt() -> () {
-        qchk::quickcheck(prop::bool_and_tt)
+        let gen = &mut qchk::gen(rand::task_rng(), qchk::DEFAULT_SIZE);
+        let wa: wrap::Bool = qchk::Arbitrary::arbitrary(gen);
+        assert!(prop::bool_and_tt(&wa))
     }
 
     // or a ff == a
     #[test]
     fn bool_or_ff() -> () {
-        qchk::quickcheck(prop::bool_or_ff)
+        let gen = &mut qchk::gen(rand::task_rng(), qchk::DEFAULT_SIZE);
+        let wa: wrap::Bool = qchk::Arbitrary::arbitrary(gen);
+        assert!(prop::bool_or_ff(&wa))
     }
 
     // and a (and b c) == and (and a b) c
     #[test]
     fn bool_and_asc() -> () {
-        qchk::quickcheck(prop::bool_and_asc)
+        let gen = &mut qchk::gen(rand::task_rng(), qchk::DEFAULT_SIZE);
+        let wa: wrap::Bool = qchk::Arbitrary::arbitrary(gen);
+        let wb: wrap::Bool = qchk::Arbitrary::arbitrary(gen);
+        let wc: wrap::Bool = qchk::Arbitrary::arbitrary(gen);
+        assert!(prop::bool_and_asc(&wa, &wb, &wc))
     }
 
     // or a (or b c) == or (or a b) c
     #[test]
     fn bool_or_asc() -> () {
-        qchk::quickcheck(prop::bool_or_asc)
+        let gen = &mut qchk::gen(rand::task_rng(), qchk::DEFAULT_SIZE);
+        let wa: wrap::Bool = qchk::Arbitrary::arbitrary(gen);
+        let wb: wrap::Bool = qchk::Arbitrary::arbitrary(gen);
+        let wc: wrap::Bool = qchk::Arbitrary::arbitrary(gen);
+        assert!(prop::bool_or_asc(&wa, &wb, &wc))
     }
 
     // and a b == and b a
     #[test]
     fn bool_and_comm() -> () {
-        qchk::quickcheck(prop::bool_and_comm)
+        let gen = &mut qchk::gen(rand::task_rng(), qchk::DEFAULT_SIZE);
+        let wa: wrap::Bool = qchk::Arbitrary::arbitrary(gen);
+        let wb: wrap::Bool = qchk::Arbitrary::arbitrary(gen);
+        assert!(prop::bool_and_comm(&wa, &wb))
     }
 
     // or a b == or b a
     #[test]
     fn bool_or_comm() -> () {
-        qchk::quickcheck(prop::bool_or_comm)
+        let gen = &mut qchk::gen(rand::task_rng(), qchk::DEFAULT_SIZE);
+        let wa: wrap::Bool = qchk::Arbitrary::arbitrary(gen);
+        let wb: wrap::Bool = qchk::Arbitrary::arbitrary(gen);
+        assert!(prop::bool_or_comm(&wa, &wb))
     }
 
     // and a (or a b) == a
     #[test]
     fn bool_and_or_red() -> () {
-        qchk::quickcheck(prop::bool_and_or_red)
+        let gen = &mut qchk::gen(rand::task_rng(), qchk::DEFAULT_SIZE);
+        let wa: wrap::Bool = qchk::Arbitrary::arbitrary(gen);
+        let wb: wrap::Bool = qchk::Arbitrary::arbitrary(gen);
+        assert!(prop::bool_and_or_red(&wa, &wb))
     }
 
     // or a (and a b) = a
     #[test]
     fn bool_or_and_red() -> () {
-        qchk::quickcheck(prop::bool_or_and_red)
+        let gen = &mut qchk::gen(rand::task_rng(), qchk::DEFAULT_SIZE);
+        let wa: wrap::Bool = qchk::Arbitrary::arbitrary(gen);
+        let wb: wrap::Bool = qchk::Arbitrary::arbitrary(gen);
+        assert!(prop::bool_or_and_red(&wa, &wb))
     }
 
     // and a (or b c) == or (and a b) (and a c)
     #[test]
     fn bool_and_or_dist() -> () {
-        qchk::quickcheck(prop::bool_and_or_dist)
+        let gen = &mut qchk::gen(rand::task_rng(), qchk::DEFAULT_SIZE);
+        let wa: wrap::Bool = qchk::Arbitrary::arbitrary(gen);
+        let wb: wrap::Bool = qchk::Arbitrary::arbitrary(gen);
+        let wc: wrap::Bool = qchk::Arbitrary::arbitrary(gen);
+        assert!(prop::bool_and_or_dist(&wa, &wb, &wc))
     }
 
     // or a (and b c) == and (or a b) (or a c)
     #[test]
     fn bool_or_and_dist() -> () {
-        qchk::quickcheck(prop::bool_or_and_dist)
+        let gen = &mut qchk::gen(rand::task_rng(), qchk::DEFAULT_SIZE);
+        let wa: wrap::Bool = qchk::Arbitrary::arbitrary(gen);
+        let wb: wrap::Bool = qchk::Arbitrary::arbitrary(gen);
+        let wc: wrap::Bool = qchk::Arbitrary::arbitrary(gen);
+        assert!(prop::bool_or_and_dist(&wa, &wb, &wc))
     }
 
     // and a (not a) == ff
     #[test]
     fn bool_law_non_contradiction() -> () {
-        qchk::quickcheck(prop::bool_law_non_contradiction)
+        let gen = &mut qchk::gen(rand::task_rng(), qchk::DEFAULT_SIZE);
+        let wa: wrap::Bool = qchk::Arbitrary::arbitrary(gen);
+        assert!(prop::bool_law_non_contradiction(&wa))
     }
 
     // or a (not a) == tt
     #[test]
     fn bool_law_excluded_middle() -> () {
-        qchk::quickcheck(prop::bool_law_excluded_middle)
+        let gen = &mut qchk::gen(rand::task_rng(), qchk::DEFAULT_SIZE);
+        let wa: wrap::Bool = qchk::Arbitrary::arbitrary(gen);
+        assert!(prop::bool_law_excluded_middle(&wa))
     }
 
 }
