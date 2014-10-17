@@ -24,20 +24,11 @@ $ curl -s https://static.rust-lang.org/rustup.sh | sudo sh
 
 See [Installing Rust](http://doc.rust-lang.org/guide.html#installing-rust) for further details.
 
-## Building
+## Usage
 
 ```
-$ cargo build
-```
-
-## Running
-
-```
-$ cargo run
-```
-
-## Testing
-
-```
-$ cargo test
+$ cargo build       ## build library and binary
+$ cargo run         ## run binary (does nothing useful yet)
+$ cargo test        ## run tests in ./tests
+$ cargo bench       ## run benchmarks in ./benches
 ```
