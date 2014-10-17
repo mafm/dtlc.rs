@@ -47,5 +47,3 @@ fn bench(b:&mut std_test::Bencher) -> () {
     };
     b.iter(task);
 }
-
-//let g = &mut gen(task_rng(), DEFAULT_SIZE);
