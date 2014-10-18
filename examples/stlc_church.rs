@@ -37,9 +37,9 @@ pub fn mk_not() -> chk::Chk {
             box inf::App( // ((b tt) ff)
                 box inf::App( // (b tt)
                     box inf::Var(0), // b
-                    box mk_tt() // tt
+                    mk_tt() // tt
                 ),
-                box mk_ff() // ff
+                mk_ff() // ff
             )
         )
     )
@@ -54,9 +54,9 @@ pub fn mk_and() -> chk::Chk {
                 box inf::App( // ((b1 ff) b2)
                     box inf::App( // (b1 ff)
                         box inf::Var(1), // b1
-                        box mk_ff() // ff
+                        mk_ff() // ff
                     ),
-                    box chk::Inf(
+                    chk::Inf(
                         box inf::Var(0) // b2
                     )
                 )
@@ -74,11 +74,11 @@ pub fn mk_or() -> chk::Chk {
                 box inf::App( // ((b1 b2) tt)
                     box inf::App( // (b1 b2)
                         box inf::Var(1), // b1
-                        box chk::Inf(
+                        chk::Inf(
                             box inf::Var(0) // b2
                         )
                     ),
-                    box mk_tt() // tt
+                    mk_tt() // tt
                 )
             )
         )
@@ -95,11 +95,11 @@ pub fn mk_if() -> chk::Chk {
                     box inf::App(
                         box inf::App(
                             box inf::Var(2), // c
-                            box chk::Inf(
+                            chk::Inf(
                                 box inf::Var(1) // at
                             )
                         ),
-                        box chk::Inf(
+                        chk::Inf(
                             box inf::Var(0) // af
                         )
                     )

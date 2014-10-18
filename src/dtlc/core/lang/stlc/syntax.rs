@@ -57,8 +57,8 @@ pub mod inf {
     #[deriving(PartialOrd)]
     #[deriving(Show)]
     pub enum Inf {
-        Ann(Box<chk::Chk>, Box<typ::Typ>),
-        App(Box<inf::Inf>, Box<chk::Chk>),
+        Ann(chk::Chk, typ::Typ),
+        App(Box<inf::Inf>, chk::Chk),
         Var(uint),
         Par(sym::Sym),
     }

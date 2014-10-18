@@ -101,12 +101,12 @@ pub mod prop {
                 box inf::App(
                     box inf::App(
                         box inf::Ann(
-                            box church::mk_and(),
-                            box typ::Par(sym::Con(String::from_str("*")))
+                            church::mk_and(),
+                            typ::Par(sym::Con(String::from_str("*")))
                         ),
-                        box a.clone()
+                        a.clone()
                     ),
-                    box church::mk_tt()
+                    church::mk_tt()
                 )
             );
         let trhs = a;
@@ -123,12 +123,12 @@ pub mod prop {
                 box inf::App(
                     box inf::App(
                         box inf::Ann(
-                            box church::mk_or(),
-                            box typ::Par(sym::Con(String::from_str("*")))
+                            church::mk_or(),
+                            typ::Par(sym::Con(String::from_str("*")))
                         ),
-                        box a.clone()
+                        a.clone()
                     ),
-                    box church::mk_ff()
+                    church::mk_ff()
                 )
             );
         let trhs = a.clone();
@@ -147,21 +147,21 @@ pub mod prop {
                 box inf::App(
                     box inf::App(
                         box inf::Ann(
-                            box church::mk_and(),
-                            box typ::Par(sym::Con(String::from_str("*")))
+                            church::mk_and(),
+                            typ::Par(sym::Con(String::from_str("*")))
                         ),
-                        box a.clone()
+                        a.clone()
                     ),
-                    box chk::Inf(
+                    chk::Inf(
                         box inf::App(
                             box inf::App(
                                 box inf::Ann(
-                                    box church::mk_and(),
-                                    box typ::Par(sym::Con(String::from_str("*")))
+                                    church::mk_and(),
+                                    typ::Par(sym::Con(String::from_str("*")))
                                 ),
-                                box b.clone()
+                                b.clone()
                             ),
-                            box c.clone()
+                            c.clone()
                         )
                     )
                 )
@@ -171,23 +171,23 @@ pub mod prop {
                 box inf::App(
                     box inf::App(
                         box inf::Ann(
-                            box church::mk_and(),
-                            box typ::Par(sym::Con(String::from_str("*")))
+                            church::mk_and(),
+                            typ::Par(sym::Con(String::from_str("*")))
                         ),
-                        box chk::Inf(
+                        chk::Inf(
                             box inf::App(
                                 box inf::App(
                                     box inf::Ann(
-                                        box church::mk_and(),
-                                        box typ::Par(sym::Con(String::from_str("*")))
+                                        church::mk_and(),
+                                        typ::Par(sym::Con(String::from_str("*")))
                                     ),
-                                    box a
+                                    a
                                 ),
-                                box b
+                                b
                             )
                         )
                     ),
-                    box c
+                    c
                 )
             );
         let vlhs = normal::chk(tlhs, vec![]);
@@ -205,21 +205,21 @@ pub mod prop {
                 box inf::App(
                     box inf::App(
                         box inf::Ann(
-                            box church::mk_or(),
-                            box typ::Par(sym::Con(String::from_str("*")))
+                            church::mk_or(),
+                            typ::Par(sym::Con(String::from_str("*")))
                         ),
-                        box a.clone()
+                        a.clone()
                     ),
-                    box chk::Inf(
+                    chk::Inf(
                         box inf::App(
                             box inf::App(
                                 box inf::Ann(
-                                    box church::mk_or(),
-                                    box typ::Par(sym::Con(String::from_str("*")))
+                                    church::mk_or(),
+                                    typ::Par(sym::Con(String::from_str("*")))
                                 ),
-                                box b.clone()
+                                b.clone()
                             ),
-                            box c.clone()
+                            c.clone()
                         )
                     )
                 )
@@ -229,23 +229,23 @@ pub mod prop {
                 box inf::App(
                     box inf::App(
                         box inf::Ann(
-                            box church::mk_or(),
-                            box typ::Par(sym::Con(String::from_str("*")))
+                            church::mk_or(),
+                            typ::Par(sym::Con(String::from_str("*")))
                         ),
-                        box chk::Inf(
+                        chk::Inf(
                             box inf::App(
                                 box inf::App(
                                     box inf::Ann(
-                                        box church::mk_or(),
-                                        box typ::Par(sym::Con(String::from_str("*")))
+                                        church::mk_or(),
+                                        typ::Par(sym::Con(String::from_str("*")))
                                     ),
-                                    box a
+                                    a
                                 ),
-                                box b
+                                b
                             )
                         )
                     ),
-                    box c
+                    c
                 )
             );
         let vlhs = normal::chk(tlhs, vec![]);
@@ -262,12 +262,12 @@ pub mod prop {
                 box inf::App(
                     box inf::App(
                         box inf::Ann(
-                            box church::mk_and(),
-                            box typ::Par(sym::Con(String::from_str("*")))
+                            church::mk_and(),
+                            typ::Par(sym::Con(String::from_str("*")))
                         ),
-                        box a.clone()
+                        a.clone()
                     ),
-                    box b.clone()
+                    b.clone()
                 )
             );
         let trhs =
@@ -275,12 +275,12 @@ pub mod prop {
                 box inf::App(
                     box inf::App(
                         box inf::Ann(
-                            box church::mk_and(),
-                            box typ::Par(sym::Con(String::from_str("*")))
+                            church::mk_and(),
+                            typ::Par(sym::Con(String::from_str("*")))
                         ),
-                        box b
+                        b
                     ),
-                    box a
+                    a
                 )
             );
         let vlhs = normal::chk(tlhs, vec![]);
@@ -297,12 +297,12 @@ pub mod prop {
                 box inf::App(
                     box inf::App(
                         box inf::Ann(
-                            box church::mk_or(),
-                            box typ::Par(sym::Con(String::from_str("*")))
+                            church::mk_or(),
+                            typ::Par(sym::Con(String::from_str("*")))
                         ),
-                        box a.clone()
+                        a.clone()
                     ),
-                    box b.clone()
+                    b.clone()
                 )
             );
         let trhs =
@@ -310,12 +310,12 @@ pub mod prop {
                 box inf::App(
                     box inf::App(
                         box inf::Ann(
-                            box church::mk_or(),
-                            box typ::Par(sym::Con(String::from_str("*")))
+                            church::mk_or(),
+                            typ::Par(sym::Con(String::from_str("*")))
                         ),
-                        box b
+                        b
                     ),
-                    box a
+                    a
                 )
             );
         let vlhs = normal::chk(tlhs, vec![]);
@@ -332,21 +332,21 @@ pub mod prop {
                 box inf::App(
                     box inf::App(
                         box inf::Ann(
-                            box church::mk_and(),
-                            box typ::Par(sym::Con(String::from_str("*")))
+                            church::mk_and(),
+                            typ::Par(sym::Con(String::from_str("*")))
                         ),
-                        box a.clone()
+                        a.clone()
                     ),
-                    box chk::Inf(
+                    chk::Inf(
                         box inf::App(
                             box inf::App(
                                 box inf::Ann(
-                                    box church::mk_or(),
-                                    box typ::Par(sym::Con(String::from_str("*")))
+                                    church::mk_or(),
+                                    typ::Par(sym::Con(String::from_str("*")))
                                 ),
-                                box a.clone()
+                                a.clone()
                             ),
-                            box b
+                            b
                         )
                     )
                 )
@@ -366,21 +366,21 @@ pub mod prop {
                 box inf::App(
                     box inf::App(
                         box inf::Ann(
-                            box church::mk_or(),
-                            box typ::Par(sym::Con(String::from_str("*")))
+                            church::mk_or(),
+                            typ::Par(sym::Con(String::from_str("*")))
                         ),
-                        box a.clone()
+                        a.clone()
                     ),
-                    box chk::Inf(
+                    chk::Inf(
                         box inf::App(
                             box inf::App(
                                 box inf::Ann(
-                                    box church::mk_and(),
-                                    box typ::Par(sym::Con(String::from_str("*")))
+                                    church::mk_and(),
+                                    typ::Par(sym::Con(String::from_str("*")))
                                 ),
-                                box a.clone()
+                                a.clone()
                             ),
-                            box b
+                            b
                         )
                     )
                 )
@@ -401,21 +401,21 @@ pub mod prop {
                 box inf::App(
                     box inf::App(
                         box inf::Ann(
-                            box church::mk_and(),
-                            box typ::Par(sym::Con(String::from_str("*")))
+                            church::mk_and(),
+                            typ::Par(sym::Con(String::from_str("*")))
                         ),
-                        box a.clone()
+                        a.clone()
                     ),
-                    box chk::Inf(
+                    chk::Inf(
                         box inf::App(
                             box inf::App(
                                 box inf::Ann(
-                                    box church::mk_or(),
-                                    box typ::Par(sym::Con(String::from_str("*")))
+                                    church::mk_or(),
+                                    typ::Par(sym::Con(String::from_str("*")))
                                 ),
-                                box b.clone()
+                                b.clone()
                             ),
-                            box c.clone()
+                            c.clone()
                         )
                     )
                 )
@@ -425,32 +425,32 @@ pub mod prop {
                 box inf::App(
                     box inf::App(
                         box inf::Ann(
-                            box church::mk_or(),
-                            box typ::Par(sym::Con(String::from_str("*")))
+                            church::mk_or(),
+                            typ::Par(sym::Con(String::from_str("*")))
                         ),
-                        box chk::Inf(
+                        chk::Inf(
                             box inf::App(
                                 box inf::App(
                                     box inf::Ann(
-                                        box church::mk_and(),
-                                        box typ::Par(sym::Con(String::from_str("*")))
+                                        church::mk_and(),
+                                        typ::Par(sym::Con(String::from_str("*")))
                                     ),
-                                    box a.clone()
+                                    a.clone()
                                 ),
-                                box b
+                                b
                             )
                         )
                     ),
-                    box chk::Inf(
+                    chk::Inf(
                         box inf::App(
                             box inf::App(
                                 box inf::Ann(
-                                    box church::mk_and(),
-                                    box typ::Par(sym::Con(String::from_str("*")))
+                                    church::mk_and(),
+                                    typ::Par(sym::Con(String::from_str("*")))
                                 ),
-                                box a
+                                a
                             ),
-                            box c
+                            c
                         )
                     )
                 )
@@ -470,21 +470,21 @@ pub mod prop {
                 box inf::App(
                     box inf::App(
                         box inf::Ann(
-                            box church::mk_or(),
-                            box typ::Par(sym::Con(String::from_str("*")))
+                            church::mk_or(),
+                            typ::Par(sym::Con(String::from_str("*")))
                         ),
-                        box a.clone()
+                        a.clone()
                     ),
-                    box chk::Inf(
+                    chk::Inf(
                         box inf::App(
                             box inf::App(
                                 box inf::Ann(
-                                    box church::mk_and(),
-                                    box typ::Par(sym::Con(String::from_str("*")))
+                                    church::mk_and(),
+                                    typ::Par(sym::Con(String::from_str("*")))
                                 ),
-                                box b.clone()
+                                b.clone()
                             ),
-                            box c.clone()
+                            c.clone()
                         )
                     )
                 )
@@ -494,32 +494,32 @@ pub mod prop {
                 box inf::App(
                     box inf::App(
                         box inf::Ann(
-                            box church::mk_and(),
-                            box typ::Par(sym::Con(String::from_str("*")))
+                            church::mk_and(),
+                            typ::Par(sym::Con(String::from_str("*")))
                         ),
-                        box chk::Inf(
+                        chk::Inf(
                             box inf::App(
                                 box inf::App(
                                     box inf::Ann(
-                                        box church::mk_or(),
-                                        box typ::Par(sym::Con(String::from_str("*")))
+                                        church::mk_or(),
+                                        typ::Par(sym::Con(String::from_str("*")))
                                     ),
-                                    box a.clone()
+                                    a.clone()
                                 ),
-                                box b
+                                b
                             )
                         )
                     ),
-                    box chk::Inf(
+                    chk::Inf(
                         box inf::App(
                             box inf::App(
                                 box inf::Ann(
-                                    box church::mk_or(),
-                                    box typ::Par(sym::Con(String::from_str("*")))
+                                    church::mk_or(),
+                                    typ::Par(sym::Con(String::from_str("*")))
                                 ),
-                                box a
+                                a
                             ),
-                            box c
+                            c
                         )
                     )
                 )
@@ -537,18 +537,18 @@ pub mod prop {
                 box inf::App(
                     box inf::App(
                         box inf::Ann(
-                            box church::mk_and(),
-                            box typ::Par(sym::Con(String::from_str("*")))
+                            church::mk_and(),
+                            typ::Par(sym::Con(String::from_str("*")))
                         ),
-                        box a.clone()
+                        a.clone()
                     ),
-                    box chk::Inf(
+                    chk::Inf(
                         box inf::App(
                             box inf::Ann(
-                                box church::mk_not(),
-                                box typ::Par(sym::Con(String::from_str("*")))
+                                church::mk_not(),
+                                typ::Par(sym::Con(String::from_str("*")))
                             ),
-                            box a
+                            a
                         )
                     )
                 )
@@ -567,18 +567,18 @@ pub mod prop {
                 box inf::App(
                     box inf::App(
                         box inf::Ann(
-                            box church::mk_or(),
-                            box typ::Par(sym::Con(String::from_str("*")))
+                            church::mk_or(),
+                            typ::Par(sym::Con(String::from_str("*")))
                         ),
-                        box a.clone()
+                        a.clone()
                     ),
-                    box chk::Inf(
+                    chk::Inf(
                         box inf::App(
                             box inf::Ann(
-                                box church::mk_not(),
-                                box typ::Par(sym::Con(String::from_str("*")))
+                                church::mk_not(),
+                                typ::Par(sym::Con(String::from_str("*")))
                             ),
-                            box a
+                            a
                         )
                     )
                 )
