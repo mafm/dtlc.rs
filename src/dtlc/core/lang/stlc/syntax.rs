@@ -8,8 +8,8 @@ pub mod sym {
     #[deriving(Show)]
     pub enum Sym {
         Con(String),
-        Bnd(uint),
-        UQuo(uint),
+        // Bnd(uint),
+        // UQuo(uint),
     }
 }
 
