@@ -99,7 +99,7 @@ pub mod trm {
             App(Box<self::Cmp>, chk::Val),          // ic · cv
             Obs(self::Val),                         // obs iv
             Ret(self::Val),                         // ret iv
-            Seq(Box<self::Cmp>, Box<self::Cmp>),    // seq x ⇐ ic1 in ic2
+            Seq(Box<self::Cmp>, chk::Cmp),          // seq x ⇐ ic in cc
         }
     }
 
