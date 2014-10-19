@@ -1,6 +1,6 @@
 [package]
 
-name    = "rust-dtlc"
+name    = "dtlc"
 version = "0.0.1"
 authors = [ "Darin Morrison <darinmorrison+rust@gmail.com>" ]
 
