@@ -25,6 +25,9 @@ git = "https://github.com/docopt/docopt.rs"
 [dependencies.peg]
 git = "https://github.com/kevinmehall/rust-peg"
 
+[dependencies.pretty]
+git = "https://github.com/jonsterling/rust-pretty"
+
 [dev-dependencies.quickcheck]
 git = "https://github.com/BurntSushi/quickcheck"
 
