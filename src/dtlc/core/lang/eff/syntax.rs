@@ -98,7 +98,6 @@ pub mod trm {
             Ann(chk::Cmp, typ::Cmp),                // (cc : C)
             App(Box<self::Cmp>, chk::Val),          // ic · cv
             Obs(self::Val),                         // obs iv
-            Ret(self::Val),                         // ret iv
             Seq(Box<self::Cmp>, chk::Cmp),          // seq x ⇐ ic in cc
         }
     }
